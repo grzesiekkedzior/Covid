@@ -1,0 +1,8 @@
+/venv/Scripts/
+/venv/Lib/
+/.idea/misc.xml
+/.idea/vcs.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/venv/pyvenv.cfg
+/.idea/Covid.iml

@@ -50,6 +50,5 @@ def getAllCountries():
     for l in rest_data:
         list_of_countries.append(rest_data[i]['Country'])
         i = i + 1
-    print(list_of_countries)
 
     return list_of_countries

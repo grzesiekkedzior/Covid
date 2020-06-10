@@ -25,9 +25,7 @@ class Application(tk.Frame):
         #combobox
         self.load_all_countries()
 
-        #button to combobox
-        self.button_choose_country = tk.Button(self.left_frame, text="show", relief="groove", command=self.load_country)
-        self.button_choose_country.grid(row=1, column=2, padx=5, pady=5, sticky='n')
+
 
         #middle
         self.global_information()
@@ -36,16 +34,53 @@ class Application(tk.Frame):
         self.show_covid_image()
 
     def load_all_countries(self):
-        self.label2 = tk.Label(self.left_frame, justify="left", borderwidth=2,
-                               font=("Helvetica", 12, "bold"))
-        self.label2.config(text="Choose country")
-        self.label2.grid(row=0, column=1, padx=5, pady=5, sticky='n')
+        self.label = tk.Label(self.left_frame, justify="left", borderwidth=2,
+                               font=("Helvetica", 10, "bold"))
+        self.label.config(text="Choose country")
+        self.label.grid(row=0, column=1, padx=5, pady=3, sticky='n')
         self.list = rd.getAllCountries()
         self.combobox_choose_country = tk.ttk.Combobox(self.left_frame)
         self.combobox_choose_country.grid_configure(padx=5,pady=5)
         self.combobox_choose_country['values'] = list(self.list)
         self.combobox_choose_country.grid(column=1, row=1)
         self.combobox_choose_country.set("Poland")
+
+        # button to combobox
+        self.button_choose_country = tk.Button(self.left_frame, text="show", relief="groove", command=self.load_country)
+        self.button_choose_country.grid(row=1, column=2, padx=5, pady=5, sticky='n')
+
+        #Max confirmed label
+        self.label_max_day = tk.Label(self.left_frame, justify="left", borderwidth=2,
+                                      font=("Helvetica", 10, "bold"))
+        self.label_max_day.config(text="Max Confirmed")
+        self.label_max_day.grid(row=2, column=1, padx=5, pady=4, sticky='n')
+
+        self.combobox_choose_country_max_day = tk.ttk.Combobox(self.left_frame)
+        self.combobox_choose_country_max_day.grid_configure(padx=5, pady=5)
+        self.combobox_choose_country_max_day['values'] = list(self.list)
+        self.combobox_choose_country_max_day.grid(column=1, row=3)
+        self.combobox_choose_country_max_day.set("Poland")
+
+        # button to combobox
+        self.button_choose_country_max_day = tk.Button(self.left_frame, text="show", relief="groove", command=self.load_country_max_day)
+        self.button_choose_country_max_day.grid(row=3, column=2, padx=5, pady=5, sticky='n')
+
+        # Max dead label
+        self.label_max_dead_day = tk.Label(self.left_frame, justify="left", borderwidth=2,
+                                      font=("Helvetica", 10, "bold"))
+        self.label_max_dead_day.config(text="Max Dead")
+        self.label_max_dead_day.grid(row=4, column=1, padx=5, pady=4, sticky='n')
+
+        self.combobox_choose_country_max_dead_day = tk.ttk.Combobox(self.left_frame)
+        self.combobox_choose_country_max_dead_day.grid_configure(padx=5, pady=5)
+        self.combobox_choose_country_max_dead_day['values'] = list(self.list)
+        self.combobox_choose_country_max_dead_day.grid(column=1, row=5)
+        self.combobox_choose_country_max_dead_day.set("Poland")
+
+        # button to combobox
+        self.button_choose_country_max_dead_day = tk.Button(self.left_frame, text="show", relief="groove",
+                                                       command=self.load_country_max_day)
+        self.button_choose_country_max_dead_day.grid(row=5, column=2, padx=5, pady=5, sticky='n')
 
     def show_covid_image(self):
         self.right_frame = tk.Frame(self, borderwidth=2, relief="groove")
@@ -72,6 +107,9 @@ class Application(tk.Frame):
 
     def load_country(self):
         rd.RestAllData(self.combobox_choose_country.get()).showData()
+
+    def load_country_max_day(self):
+        rd.RestAllData(self.combobox_choose_country_max_day.get()).showOneCountry()
 
 def internet_on():
    try:

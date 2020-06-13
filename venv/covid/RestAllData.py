@@ -47,13 +47,30 @@ class RestAllData:
         i = 0
         for l in self.list_of_cases:
             if i < len(self.list_of_cases) - 1:
-                print(self.list_of_cases[i + 1] - self.list_of_cases[i])
                 self.list_of_cases_max_day.append(self.list_of_cases[i + 1] - self.list_of_cases[i])
                 i = i + 1
 
         plt.subplots()
         plt.plot(self.list_of_cases_max_day, label='CONFIRMED EVERY DAY')
         plt.ylabel('CONFIRM CASES IN ' + self.COUNTRY)
+        plt.xlabel('FROM ' + self.START_DATE + ' TO ' + self.END_DATE)
+        plt.legend()
+        plt.show()
+
+    def showOneCountryDead(self):
+        self.getData()
+        self.list_of_cases_max_day_dead = []
+
+        i = 0
+        for l in self.list_of_deaths:
+            if i < len(self.list_of_deaths) - 1:
+                print(self.list_of_deaths[i + 1] - self.list_of_deaths[i])
+                self.list_of_cases_max_day_dead.append(self.list_of_deaths[i + 1] - self.list_of_deaths[i])
+                i = i + 1
+
+        plt.subplots()
+        plt.plot(self.list_of_cases_max_day_dead, label='DEAD EVERY DAY')
+        plt.ylabel('CONFIRM DEAD IN ' + self.COUNTRY)
         plt.xlabel('FROM ' + self.START_DATE + ' TO ' + self.END_DATE)
         plt.legend()
         plt.show()

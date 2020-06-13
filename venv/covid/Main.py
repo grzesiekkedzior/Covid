@@ -1,5 +1,5 @@
-import RestAllData as rd
-import RestGlobalData as gd
+import covid.RestAllData as rd
+import covid.RestGlobalData as gd
 from urllib.request import urlopen
 from tkinter import messagebox as mb
 
@@ -24,8 +24,6 @@ class Application(tk.Frame):
 
         #combobox
         self.load_all_countries()
-
-
 
         #middle
         self.global_information()
@@ -109,10 +107,10 @@ class Application(tk.Frame):
         rd.RestAllData(self.combobox_choose_country.get()).showData()
 
     def load_country_max_day(self):
-        rd.RestAllData(self.combobox_choose_country_max_day.get()).showOneCountry()
+        rd.RestAllData(self.combobox_choose_country_max_day.get()).showOneCountryCases()
 
     def load_country_max_day_dead(self):
-        rd.RestAllData(self.combobox_choose_country_max_dead_day.get()).showOneCountryDead()
+        rd.RestAllData(self.combobox_choose_country_max_dead_day.get()).showOneCountryDeaths()
 
 def internet_on():
    try:

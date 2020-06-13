@@ -40,7 +40,7 @@ class RestAllData:
         plt.legend()
         plt.show()
 
-    def showOneCountry(self):
+    def showOneCountryCases(self):
         self.getData()
         self.list_of_cases_max_day = []
 
@@ -57,7 +57,7 @@ class RestAllData:
         plt.legend()
         plt.show()
 
-    def showOneCountryDead(self):
+    def showOneCountryDeaths(self):
         self.getData()
         self.list_of_cases_max_day_dead = []
 

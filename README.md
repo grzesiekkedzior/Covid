@@ -32,6 +32,11 @@ country.showOneCountryCases()
 country.showOneCountryDeaths()
 ```
 
+- function showDataByDate(self, type, start_date, end_date) show concret data for confirmed, recovered, deaths for specific period of time
+```python
+country.showDataByDate('deaths', '2020-03-01', '2020-06-01')
+```
+
 - function getAllCountries() return list of shortcut countries.
 ```python
 getAllCountries()

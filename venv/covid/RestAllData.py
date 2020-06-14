@@ -1,5 +1,6 @@
 import requests
 import matplotlib.pyplot as plt
+
 class RestAllData:
     def __init__(self, country):
         self.resp = requests.get('https://api.covid19api.com/dayone/country/' + country)
@@ -30,7 +31,6 @@ class RestAllData:
 
     def showData(self):
         self.getData()
-        plt.subplots()
         plt.plot(self.list_of_cases, label='CONFIRMED')
         plt.plot(self.list_of_deaths, label='DEATHS')
         plt.plot(self.list_of_active, label='ACTIVE')
@@ -50,7 +50,6 @@ class RestAllData:
                 self.list_of_cases_max_day.append(self.list_of_cases[i + 1] - self.list_of_cases[i])
                 i = i + 1
 
-        plt.subplots()
         plt.plot(self.list_of_cases_max_day, label='CONFIRMED EVERY DAY')
         plt.ylabel('CONFIRM CASES IN ' + self.COUNTRY)
         plt.xlabel('FROM ' + self.START_DATE + ' TO ' + self.END_DATE)
@@ -64,17 +63,35 @@ class RestAllData:
         i = 0
         for l in self.list_of_deaths:
             if i < len(self.list_of_deaths) - 1:
-                print(self.list_of_deaths[i + 1] - self.list_of_deaths[i])
                 self.list_of_cases_max_day_dead.append(self.list_of_deaths[i + 1] - self.list_of_deaths[i])
                 i = i + 1
 
-        plt.subplots()
         plt.plot(self.list_of_cases_max_day_dead, label='DEAD EVERY DAY')
         plt.ylabel('CONFIRM DEAD IN ' + self.COUNTRY)
         plt.xlabel('FROM ' + self.START_DATE + ' TO ' + self.END_DATE)
         plt.legend()
         plt.show()
 
+    #type must be confirmed, recovered, deaths
+    def showDataByDate(self, type, start_date, end_date):
+        self.resp = requests.get('https://api.covid19api.com/total/country/'
+                                 + self.COUNTRY + '/status/' + type
+                                 + '?from=' + start_date + 'T00:00:00Z&to='
+                                 + end_date + 'T00:00:00Z')
+
+        self.rest_data = self.resp.json()
+        self.list_of_type_by_date = []
+
+        i = 0;
+        for l in self.rest_data:
+            self.list_of_type_by_date.append(self.rest_data[i]['Cases'])
+            i = i + 1
+
+        plt.plot(self.list_of_type_by_date, label=type.upper())
+        plt.ylabel('CONFIRM ' + type.upper() + ' IN ' + self.COUNTRY)
+        plt.xlabel('FROM ' + start_date + ' TO ' + end_date)
+        plt.legend()
+        plt.show()
 
 def getAllCountries():
     list_of_countries = []

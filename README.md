@@ -28,9 +28,14 @@ country.showData()
 country.showOneCountryCases()
 ```
 
-- function showOneCountryDeaths show confirmed deaths for specific country.
+- function showOneCountryDeaths() show confirmed deaths for specific country.
 ```python
 country.showOneCountryDeaths()
+```
+
+- function showOneCountryRecovered() show confirmed recovered caseses for specific country
+```python
+country.showOneCountryRecovered()
 ```
 
 - function showDataCountryByDate(type, start_date, end_date) show concret data for confirmed, recovered, deaths for specific period of time

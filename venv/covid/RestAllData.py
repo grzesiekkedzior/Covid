@@ -19,6 +19,7 @@ class RestAllData:
         self.list_of_deaths = []
         self.list_of_active = []
         self.list_of_recoverded = []
+        self.getData()
 
     def getData(self):
         i = 0;
@@ -30,7 +31,6 @@ class RestAllData:
             i = i + 1
 
     def showData(self):
-        self.getData()
         plt.plot(self.list_of_cases, label='CONFIRMED')
         plt.plot(self.list_of_deaths, label='DEATHS')
         plt.plot(self.list_of_active, label='ACTIVE')
@@ -41,7 +41,6 @@ class RestAllData:
         plt.show()
 
     def showOneCountryCases(self):
-        self.getData()
         self.list_of_cases_max_day = []
 
         i = 0
@@ -57,7 +56,6 @@ class RestAllData:
         plt.show()
 
     def showOneCountryDeaths(self):
-        self.getData()
         self.list_of_cases_max_day_dead = []
 
         i = 0
@@ -73,7 +71,6 @@ class RestAllData:
         plt.show()
 
     def showOneCountryRecovered(self):
-        self.getData()
         self.list_of_cases_max_day_recovered = []
 
         i = 0
@@ -84,6 +81,21 @@ class RestAllData:
 
         plt.plot(self.list_of_cases_max_day_recovered, label='RECOVERED EVERY DAY')
         plt.ylabel('CONFIRMED RECOVERED IN ' + self.COUNTRY)
+        plt.xlabel('FROM ' + self.START_DATE + ' TO ' + self.END_DATE)
+        plt.legend()
+        plt.show()
+
+    def showOneCountryActive(self):
+        self.list_of_cases_max_day_active = []
+
+        i = 0
+        for l in self.list_of_active:
+            if i < len(self.list_of_active) - 1:
+                self.list_of_cases_max_day_active.append(self.list_of_active[i + 1] - self.list_of_active[i])
+                i = i + 1
+
+        plt.plot(self.list_of_cases_max_day_active, label='ACTIVE EVERY DAY')
+        plt.ylabel('CONFIRMED ACTIVE IN ' + self.COUNTRY)
         plt.xlabel('FROM ' + self.START_DATE + ' TO ' + self.END_DATE)
         plt.legend()
         plt.show()

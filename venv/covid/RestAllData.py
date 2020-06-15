@@ -73,7 +73,7 @@ class RestAllData:
         plt.show()
 
     #type must be confirmed, recovered, deaths
-    def showDataByDate(self, type, start_date, end_date):
+    def showDataCountryByDate(self, type, start_date, end_date):
         self.resp = requests.get('https://api.covid19api.com/total/country/'
                                  + self.COUNTRY + '/status/' + type
                                  + '?from=' + start_date + 'T00:00:00Z&to='
@@ -89,6 +89,35 @@ class RestAllData:
 
         plt.plot(self.list_of_type_by_date, label=type.upper())
         plt.ylabel('CONFIRM ' + type.upper() + ' IN ' + self.COUNTRY)
+        plt.xlabel('FROM ' + start_date + ' TO ' + end_date)
+        plt.legend()
+        plt.show()
+
+    def showAllDataCountryByDate(self, start_date, end_date):
+        self.resp = requests.get('https://api.covid19api.com/country/'
+                                 + self.COUNTRY
+                                 + '?from=' + start_date + 'T00:00:00Z&to='
+                                 + end_date + 'T00:00:00Z')
+
+        self.rest_data = self.resp.json()
+        self.list_of_confirmed_by_date = []
+        self.list_of_recovered_by_date = []
+        self.list_of_deaths_by_date = []
+        self.list_of_active_by_date = []
+
+        i = 0;
+        for l in self.rest_data:
+            self.list_of_confirmed_by_date.append(self.rest_data[i]['Confirmed'])
+            self.list_of_recovered_by_date.append(self.rest_data[i]['Recovered'])
+            self.list_of_deaths_by_date.append(self.rest_data[i]['Deaths'])
+            self.list_of_active_by_date.append(self.rest_data[i]['Active'])
+            i = i + 1
+
+        plt.plot(self.list_of_confirmed_by_date, label='CONFIRMED')
+        plt.plot(self.list_of_recovered_by_date, label='RECOVERED')
+        plt.plot(self.list_of_deaths_by_date, label='DEATHS')
+        plt.plot(self.list_of_active_by_date, label='ACTIVE')
+        plt.ylabel('CONFIRM CASES IN ' + self.COUNTRY)
         plt.xlabel('FROM ' + start_date + ' TO ' + end_date)
         plt.legend()
         plt.show()

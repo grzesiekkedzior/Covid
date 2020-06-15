@@ -1,5 +1,5 @@
-import covid.RestAllData as rd
-import covid.RestGlobalData as gd
+import RestAllData as rd
+import RestGlobalData as gd
 from urllib.request import urlopen
 from tkinter import messagebox as mb
 
@@ -118,7 +118,6 @@ def internet_on():
         return True
    except:
         return False
-
 
 if internet_on():
     root = tk.Tk()

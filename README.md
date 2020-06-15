@@ -1,7 +1,8 @@
-#This is simple application which show plots of covid disease.
+This is simple application which show plots of covid disease.
 App must be connect to network to get data.
 All menu is intuitive and simple. All data are from https://covid19api.com/
 Library used in project:
+
 - requests
 - matplotlib
 - tkinter
@@ -32,9 +33,14 @@ country.showOneCountryCases()
 country.showOneCountryDeaths()
 ```
 
-- function showDataByDate(self, type, start_date, end_date) show concret data for confirmed, recovered, deaths for specific period of time
+- function showDataCountryByDate(type, start_date, end_date) show concret data for confirmed, recovered, deaths for specific period of time
 ```python
-country.showDataByDate('deaths', '2020-03-01', '2020-06-01')
+country.showDataCountryByDate('deaths', '2020-03-01', '2020-06-01')
+```
+
+- function showAllDataCountryByDate(start_date, end_date) show all data on one plot for confirmed, recovered, deaths for specific period of time
+```python
+country.showAllDataCountryByDate('2020-04-09','2020-05-09')
 ```
 
 - function getAllCountries() return list of shortcut countries.

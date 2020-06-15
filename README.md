@@ -38,6 +38,11 @@ country.showOneCountryDeaths()
 country.showOneCountryRecovered()
 ```
 
+- function showOneCountryActive() show active cases for specific country
+```python
+country.showOneCountryActive()
+```
+
 - function showDataCountryByDate(type, start_date, end_date) show concret data for confirmed, recovered, deaths for specific period of time
 ```python
 country.showDataCountryByDate('deaths', '2020-03-01', '2020-06-01')

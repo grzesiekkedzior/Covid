@@ -36,7 +36,7 @@ class Application(tk.Frame):
                                font=("Helvetica", 10, "bold"))
         self.label.config(text="All plots for country")
         self.label.grid(row=0, column=1, padx=5, pady=3, sticky='n')
-        self.list = rd.getAllCountries()
+        self.list = rd.get_all_countries()
         self.combobox_choose_country = tk.ttk.Combobox(self.left_frame)
         self.combobox_choose_country.grid_configure(padx=5,pady=5)
         self.combobox_choose_country['values'] = list(self.list)
@@ -104,13 +104,13 @@ class Application(tk.Frame):
         self.label.pack()
 
     def load_country(self):
-        rd.RestAllData(self.combobox_choose_country.get()).showData()
+        rd.RestAllData(self.combobox_choose_country.get()).show_data()
 
     def load_country_max_day(self):
-        rd.RestAllData(self.combobox_choose_country_max_day.get()).showOneCountryCases()
+        rd.RestAllData(self.combobox_choose_country_max_day.get()).show_one_country_cases()
 
     def load_country_max_day_dead(self):
-        rd.RestAllData(self.combobox_choose_country_max_dead_day.get()).showOneCountryDeaths()
+        rd.RestAllData(self.combobox_choose_country_max_dead_day.get()).show_one_country_deaths()
 
 def internet_on():
    try:

@@ -42,7 +42,6 @@ class RestAllData:
 
     def show_one_country_cases(self):
         self.data = self.json_one_country_cases()
-
         plt.plot(self.data, label='CONFIRMED EVERY DAY')
         plt.ylabel('CONFIRMED CASES IN ' + self.COUNTRY)
         plt.xlabel('FROM ' + self.START_DATE + ' TO ' + self.END_DATE)
@@ -60,7 +59,6 @@ class RestAllData:
 
     def show_one_country_deaths(self):
         self.data = self.json_one_country_deaths()
-
         plt.plot(self.data, label='DEAD EVERY DAY')
         plt.ylabel('CONFIRMED DEAD IN ' + self.COUNTRY)
         plt.xlabel('FROM ' + self.START_DATE + ' TO ' + self.END_DATE)
@@ -78,7 +76,6 @@ class RestAllData:
 
     def show_one_country_recovered(self):
         self.data = self.json_one_country_recovered()
-
         plt.plot(self.data, label='RECOVERED EVERY DAY')
         plt.ylabel('CONFIRMED RECOVERED IN ' + self.COUNTRY)
         plt.xlabel('FROM ' + self.START_DATE + ' TO ' + self.END_DATE)
@@ -96,7 +93,6 @@ class RestAllData:
 
     def show_one_country_active(self):
         self.data = self.json_one_country_active()
-
         plt.plot(self.data, label='ACTIVE EVERY DAY')
         plt.ylabel('CONFIRMED ACTIVE IN ' + self.COUNTRY)
         plt.xlabel('FROM ' + self.START_DATE + ' TO ' + self.END_DATE)
@@ -115,7 +111,6 @@ class RestAllData:
     #type must be confirmed, recovered, deaths
     def show_data_country_by_date(self, type, start_date, end_date):
         self.data = self.json_country_by_date(type, start_date, end_date)
-
         plt.plot(self.data, label=type.upper())
         plt.ylabel('CONFIRM ' + type.upper() + ' IN ' + self.COUNTRY)
         plt.xlabel('FROM ' + start_date + ' TO ' + end_date)
@@ -138,7 +133,6 @@ class RestAllData:
 
     def show_all_data_country_by_date(self, start_date, end_date):
         self.data = self.json_all_data_country_by_date(start_date, end_date)
-
         plt.plot(self.data[0], label='CONFIRMED')
         plt.plot(self.data[1], label='RECOVERED')
         plt.plot(self.data[2], label='DEATHS')
@@ -158,6 +152,7 @@ class RestAllData:
         self.list_of_recovered_by_date = []
         self.list_of_deaths_by_date = []
         self.list_of_active_by_date = []
+
         i = 0;
         for l in self.rest_data:
             self.list_of_confirmed_by_date.append(self.rest_data[i]['Confirmed'])
@@ -175,7 +170,6 @@ class RestAllData:
 
     def show_one_country_all_data_after_date(self, date):
         self.data = self.json_one_country_all_date_after_date(date)
-
         plt.plot(self.data[0], label='CONFIRMED')
         plt.plot(self.data[1], label='RECOVERED')
         plt.plot(self.data[2], label='DEATHS')
@@ -194,6 +188,7 @@ class RestAllData:
         self.list_of_recovered_after_date = []
         self.list_of_deaths_after_date = []
         self.list_of_active_after_date = []
+        
         i = 0;
         for l in self.rest_data:
             self.list_of_confirmed_after_date.append(self.rest_data[i]['Confirmed'])

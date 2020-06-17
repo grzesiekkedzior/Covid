@@ -41,98 +41,123 @@ class RestAllData:
         plt.show()
 
     def show_one_country_cases(self):
-        self.list_of_cases_max_day = []
+        self.data = self.json_one_country_cases()
 
-        i = 0
-        for l in self.list_of_cases:
-            if i < len(self.list_of_cases) - 1:
-                self.list_of_cases_max_day.append(self.list_of_cases[i + 1] - self.list_of_cases[i])
-                i = i + 1
-
-        plt.plot(self.list_of_cases_max_day, label='CONFIRMED EVERY DAY')
+        plt.plot(self.data, label='CONFIRMED EVERY DAY')
         plt.ylabel('CONFIRMED CASES IN ' + self.COUNTRY)
         plt.xlabel('FROM ' + self.START_DATE + ' TO ' + self.END_DATE)
         plt.legend()
         plt.show()
 
-    def show_one_country_deaths(self):
-        self.list_of_cases_max_day_dead = []
-
+    def json_one_country_cases(self):
+        self.list_of_cases_max_day = []
         i = 0
-        for l in self.list_of_deaths:
-            if i < len(self.list_of_deaths) - 1:
-                self.list_of_cases_max_day_dead.append(self.list_of_deaths[i + 1] - self.list_of_deaths[i])
+        for l in self.list_of_cases:
+            if i < len(self.list_of_cases) - 1:
+                self.list_of_cases_max_day.append(self.list_of_cases[i + 1] - self.list_of_cases[i])
                 i = i + 1
+        return self.list_of_cases_max_day
 
-        plt.plot(self.list_of_cases_max_day_dead, label='DEAD EVERY DAY')
+    def show_one_country_deaths(self):
+        self.data = self.json_one_country_deaths()
+
+        plt.plot(self.data, label='DEAD EVERY DAY')
         plt.ylabel('CONFIRMED DEAD IN ' + self.COUNTRY)
         plt.xlabel('FROM ' + self.START_DATE + ' TO ' + self.END_DATE)
         plt.legend()
         plt.show()
 
-    def show_one_country_recovered(self):
-        self.list_of_cases_max_day_recovered = []
-
+    def json_one_country_deaths(self):
+        self.list_of_cases_max_day_dead = []
         i = 0
-        for l in self.list_of_recoverded:
-            if i < len(self.list_of_recoverded) - 1:
-                self.list_of_cases_max_day_recovered.append(self.list_of_recoverded[i + 1] - self.list_of_recoverded[i])
+        for l in self.list_of_deaths:
+            if i < len(self.list_of_deaths) - 1:
+                self.list_of_cases_max_day_dead.append(self.list_of_deaths[i + 1] - self.list_of_deaths[i])
                 i = i + 1
+        return self.list_of_cases_max_day_dead
 
-        plt.plot(self.list_of_cases_max_day_recovered, label='RECOVERED EVERY DAY')
+    def show_one_country_recovered(self):
+        self.data = self.json_one_country_recovered()
+
+        plt.plot(self.data, label='RECOVERED EVERY DAY')
         plt.ylabel('CONFIRMED RECOVERED IN ' + self.COUNTRY)
         plt.xlabel('FROM ' + self.START_DATE + ' TO ' + self.END_DATE)
         plt.legend()
         plt.show()
 
-    def show_one_country_active(self):
-        self.list_of_cases_max_day_active = []
-
+    def json_one_country_recovered(self):
+        self.list_of_cases_max_day_recovered = []
         i = 0
-        for l in self.list_of_active:
-            if i < len(self.list_of_active) - 1:
-                self.list_of_cases_max_day_active.append(self.list_of_active[i + 1] - self.list_of_active[i])
+        for l in self.list_of_recoverded:
+            if i < len(self.list_of_recoverded) - 1:
+                self.list_of_cases_max_day_recovered.append(self.list_of_recoverded[i + 1] - self.list_of_recoverded[i])
                 i = i + 1
+        return self.list_of_cases_max_day_recovered
 
-        plt.plot(self.list_of_cases_max_day_active, label='ACTIVE EVERY DAY')
+    def show_one_country_active(self):
+        self.data = self.json_one_country_active()
+
+        plt.plot(self.data, label='ACTIVE EVERY DAY')
         plt.ylabel('CONFIRMED ACTIVE IN ' + self.COUNTRY)
         plt.xlabel('FROM ' + self.START_DATE + ' TO ' + self.END_DATE)
         plt.legend()
         plt.show()
 
+    def json_one_country_active(self):
+        self.list_of_cases_max_day_active = []
+        i = 0
+        for l in self.list_of_active:
+            if i < len(self.list_of_active) - 1:
+                self.list_of_cases_max_day_active.append(self.list_of_active[i + 1] - self.list_of_active[i])
+                i = i + 1
+        return self.list_of_cases_max_day_active
+
     #type must be confirmed, recovered, deaths
     def show_data_country_by_date(self, type, start_date, end_date):
-        self.resp = requests.get('https://api.covid19api.com/total/country/'
-                                 + self.COUNTRY + '/status/' + type
-                                 + '?from=' + start_date + 'T00:00:00Z&to='
-                                 + end_date + 'T00:00:00Z')
+        self.data = self.json_country_by_date(type, start_date, end_date)
 
-        self.rest_data = self.resp.json()
-        self.list_of_type_by_date = []
-
-        i = 0;
-        for l in self.rest_data:
-            self.list_of_type_by_date.append(self.rest_data[i]['Cases'])
-            i = i + 1
-
-        plt.plot(self.list_of_type_by_date, label=type.upper())
+        plt.plot(self.data, label=type.upper())
         plt.ylabel('CONFIRM ' + type.upper() + ' IN ' + self.COUNTRY)
         plt.xlabel('FROM ' + start_date + ' TO ' + end_date)
         plt.legend()
         plt.show()
 
+    def json_country_by_date(self, type, start_date, end_date):
+        self.resp = requests.get('https://api.covid19api.com/total/country/'
+                                 + self.COUNTRY + '/status/' + type
+                                 + '?from=' + start_date + 'T00:00:00Z&to='
+                                 + end_date + 'T00:00:00Z')
+        self.rest_data = self.resp.json()
+        self.list_of_type_by_date = []
+        i = 0;
+        for l in self.rest_data:
+            self.list_of_type_by_date.append(self.rest_data[i]['Cases'])
+            i = i + 1
+
+        return self.list_of_type_by_date
+
     def show_all_data_country_by_date(self, start_date, end_date):
+        self.data = self.json_all_data_country_by_date(start_date, end_date)
+
+        plt.plot(self.data[0], label='CONFIRMED')
+        plt.plot(self.data[1], label='RECOVERED')
+        plt.plot(self.data[2], label='DEATHS')
+        plt.plot(self.data[3], label='ACTIVE')
+        plt.ylabel('CONFIRM CASES IN ' + self.COUNTRY)
+        plt.xlabel('FROM ' + start_date + ' TO ' + end_date)
+        plt.legend()
+        plt.show()
+
+    def json_all_data_country_by_date(self, end_date, start_date):
         self.resp = requests.get('https://api.covid19api.com/country/'
                                  + self.COUNTRY
                                  + '?from=' + start_date + 'T00:00:00Z&to='
                                  + end_date + 'T00:00:00Z')
-
         self.rest_data = self.resp.json()
         self.list_of_confirmed_by_date = []
         self.list_of_recovered_by_date = []
         self.list_of_deaths_by_date = []
         self.list_of_active_by_date = []
-
         i = 0;
         for l in self.rest_data:
             self.list_of_confirmed_by_date.append(self.rest_data[i]['Confirmed'])
@@ -141,26 +166,34 @@ class RestAllData:
             self.list_of_active_by_date.append(self.rest_data[i]['Active'])
             i = i + 1
 
-        plt.plot(self.list_of_confirmed_by_date, label='CONFIRMED')
-        plt.plot(self.list_of_recovered_by_date, label='RECOVERED')
-        plt.plot(self.list_of_deaths_by_date, label='DEATHS')
-        plt.plot(self.list_of_active_by_date, label='ACTIVE')
-        plt.ylabel('CONFIRM CASES IN ' + self.COUNTRY)
-        plt.xlabel('FROM ' + start_date + ' TO ' + end_date)
+        self.all_by_date = (self.list_of_confirmed_by_date,
+                         self.list_of_recovered_by_date,
+                         self.list_of_deaths_by_date,
+                         self.list_of_active_by_date)
+
+        return self.all_by_date
+
+    def show_one_country_all_data_after_date(self, date):
+        self.data = self.json_one_country_all_date_after_date(date)
+
+        plt.plot(self.data[0], label='CONFIRMED')
+        plt.plot(self.data[1], label='RECOVERED')
+        plt.plot(self.data[2], label='DEATHS')
+        plt.plot(self.data[3], label='ACTIVE')
+        plt.ylabel('CONFIRM ALL TYPE CASES IN ' + self.COUNTRY)
+        plt.xlabel('AFTER DATE ' + date)
         plt.legend()
         plt.show()
 
-    def show_one_country_all_data_after_date(self, date):
+    def json_one_country_all_date_after_date(self, date):
         self.resp = requests.get('https://api.covid19api.com/live/country/'
                                  + self.COUNTRY
                                  + '/status/confirmed/date/' + date + 'T13:13:30Z')
-
         self.rest_data = self.resp.json()
         self.list_of_confirmed_after_date = []
         self.list_of_recovered_after_date = []
         self.list_of_deaths_after_date = []
         self.list_of_active_after_date = []
-
         i = 0;
         for l in self.rest_data:
             self.list_of_confirmed_after_date.append(self.rest_data[i]['Confirmed'])
@@ -169,15 +202,12 @@ class RestAllData:
             self.list_of_active_after_date.append(self.rest_data[i]['Active'])
             i = i + 1
 
-        plt.plot(self.list_of_confirmed_after_date, label='CONFIRMED')
-        plt.plot(self.list_of_recovered_after_date, label='RECOVERED')
-        plt.plot(self.list_of_deaths_after_date, label='DEATHS')
-        plt.plot(self.list_of_active_after_date, label='ACTIVE')
-        plt.ylabel('CONFIRM ALL TYPE CASES IN ' + self.COUNTRY)
-        plt.xlabel('AFTER DATE ' + date)
-        plt.legend()
-        plt.show()
+        self.all_after_date = (self.list_of_confirmed_after_date,
+                            self.list_of_recovered_after_date,
+                            self.list_of_deaths_after_date,
+                            self.list_of_active_after_date)
 
+        return self.all_after_date
 
 
 def get_all_countries():

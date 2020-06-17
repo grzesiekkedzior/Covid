@@ -22,42 +22,37 @@ Module RestAllData:
 ```python
 country = RestAllData('Germany')
 ```
-- function get_data() create lists of all days for (confirmed, active, deaths, recovered).
+- function getData() create lists of all days for (confirmed, active, deaths, recovered).
 ```python
 country.get_data()
 ```
 
-- function show_data() show plots (confirmed, active, deaths, recovered).
+- function showData() show plots (confirmed, active, deaths, recovered).
 ```python
 country.show_data()
 ```
 
-- function show_one_country_cases() show confirmed cases for specific country.
+- function showOneCountryCases() show confirmed cases for specific country.
 ```python
 country.show_one_country_cases()
 ```
 
-- function show_one_country_deaths() show confirmed deaths for specific country.
+- function showOneCountryDeaths() show confirmed deaths for specific country.
 ```python
 country.show_one_country_deaths()
 ```
 
-- function show_one_country_recovered() show confirmed recovered caseses for specific country
+- function showOneCountryRecovered() show confirmed recovered caseses for specific country
 ```python
 country.show_one_country_recovered()
 ```
 
-- function show_one_country_active() show active cases for specific country
-```python
-country.show_one_country_active()
-```
-
-- function show_data_country_by_date(type, start_date, end_date) show concret data for confirmed, recovered, deaths for specific period of time
+- function showDataCountryByDate(type, start_date, end_date) show concret data for confirmed, recovered, deaths for specific period of time
 ```python
 country.show_data_country_by_date('deaths', '2020-03-01', '2020-06-01')
 ```
 
-- function show_all_data_country_by_date(start_date, end_date) show all data on one plot for confirmed, recovered, deaths for specific period of time
+- function showAllDataCountryByDate(start_date, end_date) show all data on one plot for confirmed, recovered, deaths for specific period of time
 ```python
 country.show_all_data_country_by_date('2020-04-09', '2020-05-09')
 ```
@@ -67,7 +62,7 @@ country.show_all_data_country_by_date('2020-04-09', '2020-05-09')
 country.show_one_ountry_all_data_after_date('2020-04-30')
 ```
 
-- function get_all_countries() return list of shortcut countries.
+- function getAllCountries() return list of shortcut countries.
 ```python
 get_all_countries()
 ```
@@ -80,7 +75,7 @@ Module RestGlobalData:
 data = RestGlobalData()
 ```
 
-- function get_data() create attributes: new_confirmed, total_confirmed, new_deaths, total_deaths, new_recovered, total_recovered
+- function getData() create attributes: new_confirmed, total_confirmed, new_deaths, total_deaths, new_recovered, total_recovered
 ```python
 data.get_data()
 ```

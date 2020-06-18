@@ -79,6 +79,12 @@ country.json_one_country_all_date_after_date('2020-04-30')   # return tuple of j
 get_all_countries()
 ```
 
+- function show_all_cases_world() show all cases in the world.
+```python
+country.show_all_cases_world('2020-03-10', '2020-05-01')
+country.json_all_cases_world('2020-03-10', '2020-05-01')   # return tuple of json data lists
+```
+
 Module RestGlobalData:
 -
 

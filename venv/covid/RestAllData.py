@@ -235,3 +235,30 @@ def json_compare_two_countries_cases(country, country2):
     data = (list_of_cases_country_1, list_of_cases_country_2)
     return data
 
+def compare_two_countries_deaths(country, country2):
+    data = json_compare_two_countries_deaths(country, country2)
+
+    plt.plot(data[0], label='DEATHS ' + country.upper())
+    plt.plot(data[1], label='DEATHS ' + country2.upper())
+    plt.ylabel('CONFIRMED DEATHS IN ' + country.upper() + ' AND ' + country2.upper())
+    plt.legend()
+    plt.show()
+
+def json_compare_two_countries_deaths(country, country2):
+    country_1 = requests.get('https://api.covid19api.com/dayone/country/' + country).json()
+    country_2 = requests.get('https://api.covid19api.com/dayone/country/' + country2).json()
+
+    list_of_deaths_country_1 = []
+    list_of_deaths_country_2 = []
+
+    i = 0;
+    for l in country_1:
+        list_of_deaths_country_1.append(country_1[i]['Deaths'])
+        i = i + 1
+    i = 0;
+    for l in country_2:
+        list_of_deaths_country_2.append(country_2[i]['Deaths'])
+        i = i + 1
+
+    data = (list_of_deaths_country_1, list_of_deaths_country_2)
+    return data

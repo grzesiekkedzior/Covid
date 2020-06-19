@@ -80,6 +80,12 @@ compare_two_countries_cases('Spain', 'Italy')
 json_compare_two_countries_cases('Spain', 'Italy')  # return tuple of json data lists
 ```
 
+- function compare_two_countries_deaths(country, country2) show plots for both countries
+```python
+compare_two_countries_deaths('Germany', 'Italy')
+json_compare_two_countries_deaths('Germany', 'Italy')  # return tuple of json data lists
+```
+
 Module RestGlobalData:
 -
 

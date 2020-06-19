@@ -74,17 +74,6 @@ country.show_one_ountry_all_data_after_date('2020-04-30')
 country.json_one_country_all_date_after_date('2020-04-30')   # return tuple of json data lists
 ```
 
-- function get_all_countries() return list of shortcut countries.
-```python
-get_all_countries()
-```
-
-- function show_all_cases_world() show all cases in the world.
-```python
-country.show_all_cases_world('2020-03-10', '2020-05-01')
-country.json_all_cases_world('2020-03-10', '2020-05-01')   # return tuple of json data lists
-```
-
 Module RestGlobalData:
 -
 
@@ -96,6 +85,18 @@ data = RestGlobalData()
 - function get_data() create attributes: new_confirmed, total_confirmed, new_deaths, total_deaths, new_recovered, total_recovered
 ```python
 data.get_data()
+```
+
+- function show_all_cases_world() show all cases in the world.
+```python
+data.show_all_cases_world('2020-03-10', '2020-05-01')
+data.json_all_cases_world('2020-03-10', '2020-05-01')   # return tuple of json data lists
+```
+
+
+- function get_all_countries() return list of shortcut countries.
+```python
+get_all_countries()
 ```
 
 Module Main is simple gui implementation for this api.

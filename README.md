@@ -74,6 +74,12 @@ country.show_one_ountry_all_data_after_date('2020-04-30')
 country.json_one_country_all_date_after_date('2020-04-30')   # return tuple of json data lists
 ```
 
+- function compare_two_countries_cases(country, country2) show plots for both countries
+```python
+compare_two_countries_cases('Spain', 'Italy')
+json_compare_two_countries_cases('Spain', 'Italy')  # return tuple of json data lists
+```
+
 Module RestGlobalData:
 -
 

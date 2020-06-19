@@ -3,8 +3,7 @@ import matplotlib.pyplot as plt
 
 class RestAllData:
     def __init__(self, country):
-        self.resp = requests.get('https://api.covid19api.com/dayone/country/' + country)
-        self.rest_data = self.resp.json()
+        self.rest_data = self.get_json(country)
         self.COUNTRY = self.rest_data[0]['Country'].upper()
         self.COUNTRYCODE = self.rest_data[0]['CountryCode']
         self.CASES = self.rest_data[0]['Confirmed']
@@ -20,6 +19,10 @@ class RestAllData:
         self.list_of_active = []
         self.list_of_recoverded = []
         self.get_data()
+
+    def get_json(self, country):
+        self.resp = requests.get('https://api.covid19api.com/dayone/country/' + country)
+        return self.resp.json()
 
     def get_data(self):
         i = 0;
@@ -203,3 +206,32 @@ class RestAllData:
                             self.list_of_active_after_date)
 
         return self.all_after_date
+
+def compare_two_countries_cases(country, country2):
+    data = json_compare_two_countries_cases(country, country2)
+
+    plt.plot(data[0], label='CONFIRMED ' + country.upper())
+    plt.plot(data[1], label='CONFIRMED ' + country2.upper())
+    plt.ylabel('CONFIRMED CASES IN ' + country.upper() + ' AND ' + country2.upper())
+    plt.legend()
+    plt.show()
+
+def json_compare_two_countries_cases(country, country2):
+    country_1 = requests.get('https://api.covid19api.com/dayone/country/' + country).json()
+    country_2 = requests.get('https://api.covid19api.com/dayone/country/' + country2).json()
+
+    list_of_cases_country_1 = []
+    list_of_cases_country_2 = []
+
+    i = 0;
+    for l in country_1:
+        list_of_cases_country_1.append(country_1[i]['Confirmed'])
+        i = i + 1
+    i = 0;
+    for l in country_2:
+        list_of_cases_country_2.append(country_2[i]['Confirmed'])
+        i = i + 1
+
+    data = (list_of_cases_country_1, list_of_cases_country_2)
+    return data
+

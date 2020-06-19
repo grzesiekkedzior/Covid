@@ -71,6 +71,3 @@ def get_all_countries():
         i = i + 1
 
     return list_of_countries
-
-r = RestGlobalData()
-r.show_all_cases_world('2020-03-10', '2020-05-01')

@@ -36,7 +36,7 @@ class Application(tk.Frame):
                                font=("Helvetica", 10, "bold"))
         self.label.config(text="All plots for country")
         self.label.grid(row=0, column=1, padx=5, pady=3, sticky='n')
-        self.list = rd.get_all_countries()
+        self.list = gd.get_all_countries()
         self.combobox_choose_country = tk.ttk.Combobox(self.left_frame)
         self.combobox_choose_country.grid_configure(padx=5,pady=5)
         self.combobox_choose_country['values'] = list(self.list)

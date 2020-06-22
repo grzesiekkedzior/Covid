@@ -207,6 +207,7 @@ class RestAllData:
 
         return self.all_after_date
 
+
 def compare_two_countries_cases(country, country2):
     data = json_compare_two_countries_cases(country, country2)
 
@@ -215,6 +216,7 @@ def compare_two_countries_cases(country, country2):
     plt.ylabel('CONFIRMED CASES IN ' + country.upper() + ' AND ' + country2.upper())
     plt.legend()
     plt.show()
+
 
 def json_compare_two_countries_cases(country, country2):
     country_1 = requests.get('https://api.covid19api.com/dayone/country/' + country).json()
@@ -235,6 +237,7 @@ def json_compare_two_countries_cases(country, country2):
     data = (list_of_cases_country_1, list_of_cases_country_2)
     return data
 
+
 def compare_two_countries_deaths(country, country2):
     data = json_compare_two_countries_deaths(country, country2)
 
@@ -243,6 +246,7 @@ def compare_two_countries_deaths(country, country2):
     plt.ylabel('CONFIRMED DEATHS IN ' + country.upper() + ' AND ' + country2.upper())
     plt.legend()
     plt.show()
+
 
 def json_compare_two_countries_deaths(country, country2):
     country_1 = requests.get('https://api.covid19api.com/dayone/country/' + country).json()
@@ -261,4 +265,34 @@ def json_compare_two_countries_deaths(country, country2):
         i = i + 1
 
     data = (list_of_deaths_country_1, list_of_deaths_country_2)
+    return data
+
+
+def compare_two_countries_recovered(country, country2):
+    data = json_compare_two_countries_recovered(country, country2)
+
+    plt.plot(data[0], label='RECOVERED ' + country.upper())
+    plt.plot(data[1], label='RECOVERED ' + country2.upper())
+    plt.ylabel('RECOVERED IN ' + country.upper() + ' AND ' + country2.upper())
+    plt.legend()
+    plt.show()
+
+
+def json_compare_two_countries_recovered(country, country2):
+    country_1 = requests.get('https://api.covid19api.com/dayone/country/' + country).json()
+    country_2 = requests.get('https://api.covid19api.com/dayone/country/' + country2).json()
+
+    list_of_recovered_country_1 = []
+    list_of_recovered_country_2 = []
+
+    i = 0;
+    for l in country_1:
+        list_of_recovered_country_1.append(country_1[i]['Recovered'])
+        i = i + 1
+    i = 0;
+    for l in country_2:
+        list_of_recovered_country_2.append(country_2[i]['Recovered'])
+        i = i + 1
+
+    data = (list_of_recovered_country_1, list_of_recovered_country_2)
     return data

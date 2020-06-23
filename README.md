@@ -92,6 +92,12 @@ compare_two_countries_recovered('Germany', 'Russia')
 json_compare_two_countries_recovered('Germany', 'Russia')   # return tuple of json data lists
 ```
 
+- function compare_two_countries_active(country, country2) show plots for both countries
+```python
+compare_two_countries_active('Germany', 'Russia')
+json_compare_two_countries_active('Germany', 'Russia')    # return tuple of json data lists
+```
+
 Module RestGlobalData:
 -
 

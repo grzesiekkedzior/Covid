@@ -55,9 +55,10 @@ class RestAllData:
         self.list_of_cases_max_day = []
         i = 0
         for l in self.list_of_cases:
-            if i < len(self.list_of_cases) - 1:
+            if i < len(self.list_of_cases) - 1 and self.list_of_cases[i] > 0 and self.list_of_cases[i + 1] > self.list_of_cases[i]:
                 self.list_of_cases_max_day.append(self.list_of_cases[i + 1] - self.list_of_cases[i])
-                i = i + 1
+            i = i + 1
+
         return self.list_of_cases_max_day
 
     def show_one_country_deaths(self):
@@ -72,9 +73,10 @@ class RestAllData:
         self.list_of_cases_max_day_dead = []
         i = 0
         for l in self.list_of_deaths:
-            if i < len(self.list_of_deaths) - 1:
+            if i < len(self.list_of_deaths) - 1 and self.list_of_deaths[i] > 0 and self.list_of_deaths[i + 1] > self.list_of_deaths[i]:
                 self.list_of_cases_max_day_dead.append(self.list_of_deaths[i + 1] - self.list_of_deaths[i])
-                i = i + 1
+            i = i + 1
+
         return self.list_of_cases_max_day_dead
 
     def show_one_country_recovered(self):
@@ -89,9 +91,10 @@ class RestAllData:
         self.list_of_cases_max_day_recovered = []
         i = 0
         for l in self.list_of_recoverded:
-            if i < len(self.list_of_recoverded) - 1:
+            if i < len(self.list_of_recoverded) - 1 and self.list_of_recoverded[i] > 0 and self.list_of_recoverded[i + 1] > self.list_of_recoverded[i]:
                 self.list_of_cases_max_day_recovered.append(self.list_of_recoverded[i + 1] - self.list_of_recoverded[i])
-                i = i + 1
+            i = i + 1
+
         return self.list_of_cases_max_day_recovered
 
     def show_one_country_active(self):
@@ -106,9 +109,10 @@ class RestAllData:
         self.list_of_cases_max_day_active = []
         i = 0
         for l in self.list_of_active:
-            if i < len(self.list_of_active) - 1:
+            if i < len(self.list_of_active) - 1 and self.list_of_active[i] > 0 and self.list_of_active[i + 1] > self.list_of_active[i]:
                 self.list_of_cases_max_day_active.append(self.list_of_active[i + 1] - self.list_of_active[i])
-                i = i + 1
+            i = i + 1
+
         return self.list_of_cases_max_day_active
 
     #type must be confirmed, recovered, deaths

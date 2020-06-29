@@ -57,6 +57,8 @@ class RestAllData:
         for l in self.list_of_cases:
             if i < len(self.list_of_cases) - 1 and self.list_of_cases[i] > 0 and self.list_of_cases[i + 1] > self.list_of_cases[i]:
                 self.list_of_cases_max_day.append(self.list_of_cases[i + 1] - self.list_of_cases[i])
+            elif (self.list_of_cases[i] == 0):
+                self.list_of_cases_max_day.append(0)
             i = i + 1
 
         return self.list_of_cases_max_day
@@ -75,6 +77,8 @@ class RestAllData:
         for l in self.list_of_deaths:
             if i < len(self.list_of_deaths) - 1 and self.list_of_deaths[i] > 0 and self.list_of_deaths[i + 1] > self.list_of_deaths[i]:
                 self.list_of_cases_max_day_dead.append(self.list_of_deaths[i + 1] - self.list_of_deaths[i])
+            elif (self.list_of_deaths[i] == 0):
+                self.list_of_cases_max_day_dead.append(0)
             i = i + 1
 
         return self.list_of_cases_max_day_dead
@@ -93,6 +97,8 @@ class RestAllData:
         for l in self.list_of_recoverded:
             if i < len(self.list_of_recoverded) - 1 and self.list_of_recoverded[i] > 0 and self.list_of_recoverded[i + 1] > self.list_of_recoverded[i]:
                 self.list_of_cases_max_day_recovered.append(self.list_of_recoverded[i + 1] - self.list_of_recoverded[i])
+            elif (self.list_of_recoverded[i] == 0):
+                self.list_of_cases_max_day_recovered.append(0)
             i = i + 1
 
         return self.list_of_cases_max_day_recovered
@@ -111,6 +117,8 @@ class RestAllData:
         for l in self.list_of_active:
             if i < len(self.list_of_active) - 1 and self.list_of_active[i] > 0 and self.list_of_active[i + 1] > self.list_of_active[i]:
                 self.list_of_cases_max_day_active.append(self.list_of_active[i + 1] - self.list_of_active[i])
+            elif (self.list_of_active[i] == 0):
+                self.list_of_cases_max_day_active.append(0)
             i = i + 1
 
         return self.list_of_cases_max_day_active
